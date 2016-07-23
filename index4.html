@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<title>RPG GAME</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row" id="characters">
+			<div class="col-sm-10">
+				<div class="col-sm-4">
+					<img ID="yodapic" class="profile " src="assets/images/yoda.jpeg" width="250px">
+				</div>
+				<div class="col-sm-4">
+					<img ID="obipic" class="profile" src="assets/images/obi.jpg" width="250px">
+				</div>
+				<div class="col-sm-4">
+					<img ID="vaderpic" class="profile" src="assets/images/vader.jpeg" width="250px">
+				</div>
+			</div>
+		</div>
+		<br>
+
+		<div id="myDiv" class="row">
+			
+		</div>
+		<div id="enemyDiv">
+			
+		</div>
+	</div>
+
+
+</body>
+<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript">
+	
+myCharacter = "";
+
+	yoda = {
+		attack: 25,
+		hp: 100,
+
+	}
+
+	obi = {
+		attack: 15,
+		hp: 100,
+	}
+
+	vader = {
+		attack: 20,
+		hp: 100,
+	}
+
+
+	$("#yodapic").click(function(){
+		if(myCharacter == ""){
+			pickCharacter(yoda);
+			var img = $("#yodapic");
+			// $("#characters").remove(img);
+			$("#myDiv").append(img);
+			$("#myDiv").append()
+		}
+		else{
+			enemyCharacter(yoda);
+
+
+		}
+	})
+
+
+	$("#obipic").click(function(){
+		pickCharacter(obi);
+		var img = $("#obipic");
+		$("#myDiv").append(img);
+	})
+
+	$("#vaderpic").click(function(){
+		pickCharacter(vader);
+		var img = $("#vaderpic");
+		$("#myDiv").append(img);
+	})
+
+
+	function pickCharacter(x){
+		myCharacter = x;
+		console.log(myCharacter);
+	}
+
+	function enemyCharacter(x){
+		enemyCharacter = x;
+		console.log(enemyCharacter);
+	}
+
+	// function placeCharacter(x){
+	// 	var img = $("<img></img>").attr('id', 'attacker').
+	// 	$("#myDiv").append(img);
+	// }
+
+
+
+</script>
+
+
+</html>

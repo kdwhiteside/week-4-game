@@ -1,0 +1,79 @@
+body{
+	background-image: url(../images/background.jpg);
+
+	max-width: 100%;
+	/*overflow: hidden;*/
+}
+
+#theme{
+	font-family: 'Russo One', sans-serif;
+	color: yellow;
+}
+
+h1{
+
+	font-size: 4em;
+}
+
+.characters{
+	/*overflow: auto;*/
+/*	min-height: 200px;*/
+	/*color: #cccccc;*/
+	background-color: #ffffff;
+	padding: 5px;
+	margin: 20px;
+	border: 5px solid green;
+	font-family: 'Geostar Fill', cursive;
+	font-weight: bold;
+	text-align: center;
+}
+
+.characters img{
+	margin: auto;
+}
+
+/*
+#obipic{
+	max-width: 400px;
+
+}*/
+.col-sm-3{
+	text-align: center;
+}
+/*.row{
+	overflow: auto;
+}*/
+#charactersRow img{
+	max-height: 
+}
+
+#myCharacterDiv{
+	text-align: center;
+	margin: 0 10px;
+
+
+		/*float: top;*/
+}
+h2{
+	float: top;
+	color: yellow;
+	font-family: 'Russo One', sans-serif;
+	text-align: center;
+}
+
+#enemyCharacterRow h2{
+	position: relative;
+	left:2.5%;
+	text-align: left;
+}
+
+.yo{
+	background-color: red;
+}
+.defense{
+	background-color: black;
+	color: white;
+}
+
+
+
