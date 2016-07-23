@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>YOOO</title>
+	<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css?family=Geostar+Fill" rel="stylesheet">
+		
+	<link rel="stylesheet" type="text/css" href="assets/	css/reset.css">
+
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+
+</body>
+<script type="text/javascript">
+	
+
+	$("document").ready(function(){
+
+		var row0 = $("<div/>").addClass("row").attr("id", "character0");
+		
+		$("body").append(row0);
+
+		var col0 = $("<div/>").addClass("col-sm-8").html("<h2>CLICK A CHARACTER TO START!");
+		var col1 = $("<div/>").addClass("col-sm-4").attr("id", "theme").html("<h1>STAR WARS</h1>");
+
+		$("#character0").append(col0, col1)
+		
+
+
+		var yoda = {
+			Name: "Yoda",
+			Attack: 25,
+			Counterattack: 25,
+			hp: 100,
+			image: "yoda.jpeg"
+		};
+
+		var vader = {
+			Name: "Darth Vader",
+			Attack: 20,
+			Counterattack: 20,
+			hp: 100,
+			image: "vader.jpeg"
+		};
+
+		var obi = {
+			Name: "Obi-Wan",
+			Attack: 15,
+			Counterattack: 15,
+			hp: 100,
+			image: "obi.jpg"
+		};
+
+
+		var characterArray = [yoda, obi, vader];
+
+		var row = $("<div/>").addClass("row").attr("id", "charactersRow");
+		
+		$("body").append(row);
+		
+		for (var i = 0; i < characterArray.length; i++) {
+
+			var $characters = $("<div/>").addClass("col-sm-2 characters enemies first").attr('id', characterArray[i].Name).html('<span>' + characterArray[i].Name + '</span><img src=./assets/images/' + characterArray[i].image + ' class="img-responsive">' + '<span id=' + [i] + '> HP: ' + characterArray[i].hp + '</span>');
+
+			$("#charactersRow").append($characters);
+		// console.log($characters);
+
+		}
+
+		// RULES
+		// var $instruction = $("<div/>").addClass("row").attr("id", "rulesRow");
+		// $("body").append($instruction);
+		// var $spaceCol = $("<div/>").addClass("col-sm-6").attr("id", "rulesSpace");
+		// var $instructionCol = $("<div/>").addClass("col-sm-6").attr("id", "rules").html("<h2>CLICK A CHARACTER TO START!");
+		// $("#rulesRow").append($spaceCol, $instructionCol);
+		// RULES
+
+
+		defenderPicked = false;
+		charClicked = false;
+		$(".enemies").click(function(){
+			if (charClicked == true) {
+				// IF YOUR CHARACTER HAS ALREADY BEEN CLICKED
+				if (defenderPicked == false) {
+					var div = $("<div/>").addClass("col-sm-3 remove").attr("id", "defenderDiv").html("<h2>Defender</h2>");
+					var attackSpace = $("<div/>").addClass("col-sm-2 remove").attr("id", "battleSpace").html("<h2>ATTACK</h2><br><button id='attackbtn' type='button' class='btn btn-block btn-primary'>ATTACK</button>");
+					$("#myCharacterRow").append(attackSpace);
+					$("#myCharacterRow").append(div);
+					$('#attackbtn').click(myFunction);
+					var d = $(this).detach();
+					$("#defenderDiv").append(d);
+					d.removeClass("col-sm-2 enemies");
+					d.addClass("defense");
+					for (var i = 0; i < characterArray.length; i++) {
+					if(characterArray[i].Name == $(this).attr("id")){
+						badGuy = characterArray[i];
+						badGuySpan = $("#" + [i]);
+					}
+				}
+
+					defenderPicked = true;
+				}
+				else{
+
+				};
+
+				
+
+			}
+			// PICKING YOUR CHARACTER
+			else {
+				var myRow = $("<div/>").addClass("row myChar").attr("id", "myCharacterRow");
+				var div = $("<div/>").addClass("col-sm-3").attr("id", "myCharacterDiv").html("<h2>" + "Your Character" + "</h2>");
+				var enemyRow = $("<div/>").addClass("row").attr("id", "enemyCharacterRow").html("<h2>ENEMIES AVAILABLE TO ATTACK");
+				
+				$("body").append(myRow);
+				$("body").append(enemyRow);
+
+				// var enemyWords = $("<div/>").addClass("col-sm-6").html("<h2>ENEMIES AVAILABLE TO ATTACK");
+				for (var i = 0; i < characterArray.length; i++) {
+					if(characterArray[i].Name == $(this).attr("id")){
+						goodGuy = characterArray[i];
+						goodGuySpan = $("#" + [i]);
+						// console.log(goodGuy);
+					}
+				}
+				
+				var m = $(this).detach();
+				// console.log(this);
+				var e = $(".characters").detach();
+				
+				$("#myCharacterRow").append(div);
+				$("#myCharacterDiv").append(m);
+				m.removeClass("col-sm-2 enemies");
+				e.addClass("yo");
+				
+				$("#enemyCharacterRow").append(e);
+				charClicked = true;
+				
+			};
+
+		});
+		function myFunction() {
+  			badGuy.hp -= goodGuy.Attack;
+  			badGuySpan.html(badGuy.hp);
+  			goodGuy.hp -= badGuy.Counterattack;
+  			goodGuySpan.html(goodGuy.hp)
+  			goodGuy.Attack += 20;
+
+
+
+  			if(goodGuy.hp < 1){
+  				var reset = confirm("YOU LOSE! PLAY AGAIN?");
+  				if (reset == true){
+  					
+  					function reset(){
+					$("body").empty();
+						var row0 = $("<div/>").addClass("row").attr("id", "character0");
+				
+					$("body").append(row0);
+
+					var col0 = $("<div/>").addClass("col-sm-8").html("<h2>CLICK A CHARACTER TO START!");
+					var col1 = $("<div/>").addClass("col-sm-4").attr("id", "theme").html("<h1>STAR WARS</h1>");
+
+					$("#character0").append(col0, col1)
+					
+
+
+						var yoda = {
+							Name: "Yoda",
+							Attack: 25,
+							Counterattack: 25,
+							hp: 100,
+							image: "yoda.jpeg"
+						};
+
+						var vader = {
+							Name: "Darth Vader",
+							Attack: 20,
+							Counterattack: 20,
+							hp: 100,
+							image: "vader.jpeg"
+						};
+
+						var obi = {
+							Name: "Obi-Wan",
+							Attack: 15,
+							Counterattack: 15,
+							hp: 100,
+							image: "obi.jpg"
+						};
+
+
+						var characterArray = [yoda, obi, vader];
+
+						var row = $("<div/>").addClass("row").attr("id", "charactersRow");
+						
+						$("body").append(row);
+					
+						for (var i = 0; i < characterArray.length; i++) {
+
+							var $characters = $("<div/>").addClass("col-sm-2 characters enemies first").attr('id', characterArray[i].Name).html('<span>' + characterArray[i].Name + '</span><img src=./assets/images/' + characterArray[i].image + ' class="img-responsive">' + '<span id=' + [i] + '> HP: ' + characterArray[i].hp + '</span>');
+
+							$("#charactersRow").append($characters);
+							// console.log($characters);
+							defenderPicked = false;
+							charClicked = false;
+
+						}
+					}
+
+  					reset();
+  				}
+  			}
+
+  			if(badGuy.hp < 1){
+  				$(".remove").remove();
+  				$(".remove").remove();
+  				defenderPicked = false;
+
+  			}
+
+
+  			
+  			// console.log(badGuy.hp);
+  			// console.log(badGuySpan);
+  			// console.log(goodGuySpan);
+		}//FUNCTION END//
+
+		// $("#attackbtn").click(function(){
+
+		// 	console.log(goodGuy);
+		// })
+
+
+	});
+
+
+</script>
+
+
+</html>
